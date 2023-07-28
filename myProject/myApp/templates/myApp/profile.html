@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to My Website</title>
+    <!-- Add any CSS or JavaScript links or code here (optional) -->
+   <style>
+     table, td, th {
+    border: 1px solid;
+    border-collapse: collapse;
+  }
+   </style>
+</head>
+<body>
+    <table>    
+        <tr>
+          <th>S.No.</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Country</th>
+        </tr>
+        {% for item in profile%}
+        <tr>
+          <td>{{item.id}}</td>
+          <td>{{item.first_name}}</td>
+          <td>{{item.last_name}}</td>
+          <td>{{item.country}}</td>
+        </tr>
+        
+        {% endfor %}
+      </table>
+      
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% include "myApp/basic.html" %}
+{% block content %}
+{% block body %} 
+<style>
+  table, td, th {
+    border: 1px solid;
+  }
+  
+  table {
+    width: 50%;
+    border-collapse: collapse;
+  }
+  .center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid rgb(17, 18, 105);
+  padding: 10px;
+}
+.class-centre {
+  margin: auto;
+  width: 25%;
+  border: 3px solid rgb(17, 18, 105);
+  padding: 10px;
+}
+
+  </style>
+  <div class = center>
+<h2>Register</h2>
+  <form action="user_register" method="post" >
+      {% csrf_token %}
+      <div class="class-center">
+        <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br>
+      </div>
+      
+      <div class="class-center">
+        <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br>
+      </div>
+      
+      <div class="class-center">
+         <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+      </div>
+     
+      <div class="class-center"></div>
+        <label for="confirm_password" >Confirm Password:</label>
+      <input type="password" id="confirm_password" name="confirm_password" required><br>
+
+      </div>
+      <div class="class-center">
+        <input type="submit" value="Register">
+      </div>
+      
+  </form>
+  </div>
+  
+      <table>    
+        <tr>
+          <th>S.No.</th>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+        {% for item in people%}
+        <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.age}}</td>
+        </tr>
+        
+        {% endfor %}
+      </table>
+      </div>
+
+      {{profile_data}}
+
+{% endblock %}
+{% endblock %}
