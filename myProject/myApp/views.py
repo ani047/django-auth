@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib import admin
 from .models import Profile
 from django.contrib.auth.models import User
+from . forms import RegistrationForm
 
 # Create your views here.
 def index(request):
@@ -43,3 +44,23 @@ def user_profile(request):
     print(profile_data)
     print(type(profile_data))
     return render(request,"myApp/profile.html",context={'profile':profile_data})
+
+def registeration(request):
+    if request.method =='POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            username = form.changed_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            conform_password = form.cleaned_data['conform_password']
+
+            if password == conform_password:
+                pass
+                #user = User.objects.create_user(username = username,email=email,password=password,conform_password = conform_password)                 
+                #user.save()
+                #return redirect('/myApp/index')
+            else:
+                form.add_error('conform_password','passwords do dont match')
+        else:
+            form = RegistrationForm()
+        return render(request, 'myApp/registration.html',{'form':form})
