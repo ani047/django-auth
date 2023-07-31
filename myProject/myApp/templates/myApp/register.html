@@ -27,7 +27,7 @@
 
   <div class = center>
 <h2>Register</h2>
-  <form onsubmit=" myFunction()" action="user_register" method="post" >
+  <form action="user_register" method="post" >
       {% csrf_token %}
       <div class="class-center">
         <label for="username">Username:</label>
@@ -41,19 +41,19 @@
       
       <div class="class-center">
          <label for="password">Password:</label>
-      <input type="password" id="password" name="password" value="">
-      <span id = 'message1'></span><br>
+      <input type="password" id="password" name="password" value=""><br>
       </div>
      
       <div class="class-center"></div>
         <label for="confirm_password" >Confirm Password:</label>
       <input type="password" id="confirm_password" name="confirm_password" value=""><br>
-      <span id = 'message2' style="color: red;"></span>
-      </div>
-      <div class="class-center">
-        <input type="submit" value="Register">
-      </div>
+     
       
+      <div class="class-center">
+        <!--<input type="submit" value="Register"> -->
+        <button onclick="validatePasswords()">Submit</button>
+      </div>
+    </div>
   </form>
   </div>
   
@@ -83,29 +83,20 @@
         <input type="submit" value="Register">
     </form>
 <script>
-  function myFunction() {
-    let pass1 = document.getElementById("password").value
-    let pass2 = document.getElementById("confirm_password").value
+  function validatePasswords() {
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirm_password').value;
+  const passwordError = document.getElementById('passwordError');
 
-    if(pass1 ===""){
-      document.getElementById("message1").innerHTML="**Please fill the Password"
-      return false;
-    }
-    if(pass1.length < 7){
-      document.getElementById("message1").innerHTML="**Password length must be greater then 7"
-      return false;
-    }
-    if(pass1.length > 19){
-      document.getElementById("message2").innerHTML="**Password length is too large"
-      return false;
-    }
-
-    if(pass1!==pass2){
-      console.log("Password are not same");
-      document.getElementById("massage2").innerHTML="**Password are not same"
-      return false;
-    }
+  if (password === confirmPassword) {
+    passwordError.textContent = "Passwords match!";
+    passwordError.style.color = "green";
+  } else {
+    passwordError.textContent = "Passwords do not match!";
+    passwordError.style.color = "red";
+  }
 }
+
 </script>
 {% endblock %}
 {% endblock %}

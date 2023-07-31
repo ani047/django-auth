@@ -8,7 +8,13 @@ from . forms import RegistrationForm
 # Create your views here.
 def index(request):
     context = 'index'
-    return render(request,'myApp/index.html',context={'page':context})
+    users = User.objects.all()
+    list = []
+    for i in users:
+        list.append(i.username)
+        list.append(i.email)
+
+    return render(request,'myApp/index.html',context={'page':context,'user':list})
 
 
 def user_register(request):
@@ -18,18 +24,14 @@ def user_register(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        conform_password = request.POST.get('conform_password')
         
         
         user = User.objects.create(
         username=username,
         email=email
         )
-        if password==conform_password:
-            user.set_password(password)
-    
+        user.set_password(password)
         user.save()
-
         return redirect('/myApp/user_register')
 
     return render(request, 'myApp/register.html',context={'page':context})
@@ -41,8 +43,6 @@ def user_login(request):
 def user_profile(request):
     context = "profile"
     profile_data = Profile.objects.all()
-    print(profile_data)
-    print(type(profile_data))
     return render(request,"myApp/profile.html",context={'profile':profile_data})
 
 def registeration(request):
