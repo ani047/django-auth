@@ -29,11 +29,7 @@
 <h2>Register</h2>
   <form action="user_register" method="post" >
       {% csrf_token %}
-      <div class="class-center">
-        <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required><br>
-      </div>
-      
+
       <div class="class-center">
         <label for="email">Email:</label>
       <input type="email" id="email" name="email" required><br>
@@ -43,6 +39,17 @@
          <label for="password">Password:</label>
       <input type="password" id="password" name="password" value=""><br>
       </div>
+
+      <div class="class-center">
+        <label for="first_name">First Name:</label>
+     <input type="firstname" id="firstname" name="firstname" value=""><br>
+     </div>
+
+     <div class="class-center">
+      <label for="lastoname">Last Name:</label>
+   <input type="lastname" id="lastname" name="lastname" value=""><br>
+   </div>
+
      
       <div class="class-center"></div>
         <label for="confirm_password" >Confirm Password:</label>

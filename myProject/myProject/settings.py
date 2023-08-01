@@ -28,18 +28,21 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
+    'myApp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myApp',
+    
     
 ]
+#AUTH_USER_MODEL = 'myApp.CustomUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -8,11 +8,13 @@ from . forms import RegistrationForm
 # Create your views here.
 def index(request):
     context = 'index'
-    users = User.objects.all()
+    users = Profile.objects.all()
     list = []
     for i in users:
-        list.append(i.username)
-        list.append(i.email)
+        list.append(i.id)
+        list.append(i.first_name)
+        list.append(i.last_name)
+        list.append(i.country)
 
     return render(request,'myApp/index.html',context={'page':context,'user':list})
 
@@ -38,7 +40,7 @@ def user_register(request):
 
 
 def user_login(request):
-    return render(request, 'myApp/basic.html')
+    return render(request, 'myApp/login.html')
 
 def user_profile(request):
     context = "profile"
